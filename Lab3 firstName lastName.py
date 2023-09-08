@@ -1,31 +1,40 @@
-"""This project is a calculator that takes two inputs(The user's income and their marital status) and calculates their annual tax owed based on thise two informations
-    Date: September 6th, 2023
-    Purpose: CIS Class assignment"""
-
 import math
 
-earned_income = int(input("What is you annual income: ")) 
-marital_status = input("Are you married?   Yes or No :")
+TAX_RATE = 0.1  # 10% tax rate 
+TAX_RATE1 = 0.12 # 12% tax rate 
+TAX_RATE2 = 0.22  # 22% tax rate 
+# get the user input
+marital_status = input("Are you married? (yes/no): ").lower().strip(" ")
+income = float(input("Enter your annual income: $"))
+
+single_income_limit = 95376
+married_income_limit = 190751
 
 
-if earned_income >= 0 and earned_income <= 11000 and marital_status == "No" or "no": #The No or No strings there makes sure the code runs whether the user inputs the word by capitalizing it or not
-    singlefiler1_tax = (earned_income * 0.1)
-    print("Your income tax is:$",singlefiler1_tax)
-elif (earned_income >=11001 and earned_income <= 44725) and marital_status == "No" or "no":
-    singlefiler2_tax = ( earned_income * 0.12)
-    print("Your income tax is:$",singlefiler2_tax)
-elif earned_income >= 44726 and earned_income<= 95375 and marital_status == "No" or "no":
-    singlefiler3_tax = (earned_income * 0.22)
-    print("Your income tax is:$", singlefiler3_tax)
-else:
-    if earned_income <= 22000 and marital_status == "Yes" or "yes":
-        marriedfiler1_tax = (earned_income * 0.1)
-        print("Your income tax is:$", marriedfiler1_tax)
-    elif earned_income >= 22001 and earned_income <= 89450 and marital_status == "Yes" or "yes":
-        marriedfiler2_tax = (earned_income *0.12)
-        print("Your income tax is:$",marriedfiler2_tax)
-    elif earned_income >= 89451 and earned_income <= 190750 and marital_status == "Yes" or "yes":
-        marriedfiler3_tax = (earned_income * 0.22)
-        print("Your income tax is:$",marriedfiler3_tax)
+if marital_status == "no":
+    if income <= 11000:
+        tax_amount = income * TAX_RATE
+        print(f"Your tax amount is: ${tax_amount:.2f}")
+    elif 11001 <= income <= 44725:
+        tax_amount = income * TAX_RATE1
+        print(f"Your tax amount is: ${tax_amount:.2f}")
+    elif 44726 <= income <= 95375:
+        tax_amount = income * TAX_RATE2
+        print(f"Your tax amount is: ${tax_amount:.2f}")
     else:
-        print(f'Your anual income was ${earned_income} but not in range')
+        print("Income is too big for this calculator")
+
+elif marital_status == "yes":
+    if income <= 22000:
+        tax_amount = income * TAX_RATE
+        print(f"Your tax amount is: ${tax_amount:.2f}")
+    elif 22001 <= income <= 89450:
+        tax_amount = income * TAX_RATE1
+        print(f"Your tax amount is: ${tax_amount:.2f}")
+    elif 89451 <= income <= 190750:
+        tax_amount = income * TAX_RATE2
+        print(f"Your tax amount is: ${tax_amount:.2f}")
+    else:
+        print("Income is too big for this calculator")
+else:
+    print("Please enter either yes or no for marital status")
